@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamento Funcional</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+    font-size: 20px;
+    font-style: week;
+    font-weight: bold;
+    line-height: 1.5;
+    background: linear-gradient(to right, #71a9da, #035756);
+    color: rgb(235, 242, 241);
+}
+
+form {
+    display: inline-block;
+    width: 500px;
+    margin: 0 auto;
+    height: 100%;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2); /* Fundo transparente */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+input, button {
+    display: block;
+    width: 90%;
+    margin: 10px 10px 10px 0;
+    padding: 10px;
+    border: none;
+    margin: 10px 10px;
+    padding: 5px;
+}
+
+button {
+    background: #ff7eb3;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ff477e;
+}
+
+
+    </style>
+    <h1>Treinamento Funcional</h1>
+    <form method="POST">
+        <form id="treinoForm">
+    <label>Nome:</label>
+    <input type="text" id="nome" required>
+    
+    <label>Objetivo:</label>
+    <input type="text" id="finalidade" required>
+    
+    <label>Peso:</label>
+    <input type="number" id="peso" required>
+    
+    <label>Dias de treino por semana:</label>
+    <input type="number" id="diasTreino" required>
+    
+    <label>Minutos de treino por dia:</label>
+    <input type="number" id="minutosTreino" step="0.1" required>
+    
+    <button type="button" onclick="calcularPerda()">Calcular</button>
+</form>
+
+<h2>Resultado:</h2>
+<p id="resultado"></p>
+    </form>
+    <script>
+        function calcularPerda() {
+            const nome = document.getElementById('nome').value;
+            const finalidade = document.getElementById('finalidade').value;
+            const peso = parseFloat(document.getElementById('peso').value);
+            const diasTreino = parseInt(document.getElementById('diasTreino').value);
+            const minutosTreino = parseFloat(document.getElementById('minutosTreino').value);
+
+            // Cálculo da perda de peso
+            const caloriasPorMinuto = 30; // Exemplo: 30 calorias queimadas por minuto
+            const caloriasQueimadas = caloriasPorMinuto * minutosTreino * diasTreino;
+            const perdaDePeso = caloriasQueimadas / 7700; // 7700 calorias para perder 1 kg
+
+            document.getElementById('resultado').innerText = `${nome}, você pode perder aproximadamente ${perdaDePeso.toFixed(2)} kg por semana fazendo esses exercícios -
+- Agachamento: 3 séries de 15 repetições
+- Supino reto: 3 séries de 15 repetições
+- Remada baixa: 3 séries de 15 repetições
+- Desenvolvimento de ombros: 3 séries de 15 repetições
+- Abdominal solo: 3 séries de 15 repetições
+.`;
+        }
+    </script>
+</body>
+</html>
